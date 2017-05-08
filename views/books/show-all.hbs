@@ -1,0 +1,14 @@
+{{#each allBooks}}
+  <div class="row">
+    <div class="col-lg-3 col-lg-offset-1">
+      <img style="width: 250px;" src="{{cover_url}}" alt="">
+    </div>
+    <div class="col-lg-7">
+      <h2>{{title}}</h2>
+      <h3>Genre: {{genre}}</h3>
+      <p>{{description}}</p>
+    </div>
+  </div>
+  <hr />
+  <br>
+{{/each}}

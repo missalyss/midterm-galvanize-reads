@@ -9,4 +9,11 @@ router.get('/', function (req, res, next) {
   })
 })
 
+router.get('/:id', (req, res) => {
+  var id = req.params.id
+  knex('authors').where({id}).then((thisAuthor) => {
+    res.render('authors/show-one', {thisAuthor})
+  })
+})
+
 module.exports = router

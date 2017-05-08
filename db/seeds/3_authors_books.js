@@ -12,10 +12,6 @@ exports.seed = function (knex, Promise) {
         {book_id: 5, author_id: 4, author_position: 1},
         {book_id: 6, author_id: 4, author_position: 1}
       ])
-    }).then(function () {
-      return knex.raw(
-        "SELECT setval('authors_books_id_seq', (SELECT MAX (id) FROM authors_books))"
-      )
     }).catch(function (error) {
       console.error('Oops! ', error)
     })

@@ -15,6 +15,23 @@ router.get('/', (req, res, next) => {
   })
 })
 
+router.get('/filtered', (req, res) => {
+  var searchBy = req.body.search_by
+  var search = req.body.search
+  req.query.searchBy = searchBy
+  req.query.search = search
+  knex.select('books.id as books_id', 'books.title', 'books.genre', 'books.description', 'books.cover_url', 'authors.id as authors_id', 'authors.first_name', 'authors.last_name')
+  .table('books')
+  .where(searchBy, search)
+  .innerJoin('authors_books', 'books.id', 'authors_books.book_id')
+  .innerJoin('authors', 'authors_books.author_id', 'authors.id')
+  .then((filteredBooks) => {
+    knex('books').count('id as counted').then((bookCount) => {
+      res.render('books/show-all', {filteredBooks, bookCount})
+    })
+  })
+})
+
 // Render edit page for books
 router.get('/edit/:id', (req, res) => {
   knex.select('books.id as books_id', 'books.title', 'books.genre', 'books.description', 'books.cover_url', 'authors.id as authors_id', 'authors.first_name', 'authors.last_name')

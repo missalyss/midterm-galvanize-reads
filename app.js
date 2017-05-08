@@ -32,7 +32,7 @@ app.use('/authors', authors)
 //register partial setup
 var hbs = require('hbs')
 var hbsutils = require('hbs-utils')(hbs)
-hbsutils.registerPartials(path.join(__dirname, 'views', 'shared') )
+hbsutils.registerPartials(path.join(__dirname, 'views', 'shared'))
 
 
 // catch 404 and forward to error handler

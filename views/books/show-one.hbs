@@ -5,13 +5,14 @@
       <img style="width: 250px;" src="{{cover_url}}" alt="">
     </div>
     <div class="col-lg-7">
-      <a href="/books/{{id}}"><h2>{{title}}</h2></a>
+      <h2>{{title}}</h2>
+      <h3>By<a href="/authors/{{authors_id}}"> {{first_name}} {{last_name}}</a></h3>
       <h3>Genre: {{genre}}</h3>
       <p>{{description}}</p>
     </div>
   </div>
-  <a href="./edit/{{id}}"><button class="btn btn-success"type="button" name="button">Edit</button></a>
-  <a href="./delete/{{id}}"><button class="btn btn-danger"type="button" name="button">Delete</button></a>
+  <a href="/books/edit/{{books_id}}"><button class="btn btn-success"type="button" name="button">Edit</button></a>
+  <a href="/books/delete/{{books_id}}"><button class="btn btn-danger"type="button" name="button">Delete</button></a>
   <hr />
   <br>
 {{/each}}

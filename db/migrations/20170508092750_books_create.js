@@ -4,7 +4,7 @@ exports.up = function (knex, Promise) {
     t.increments()
     t.string('title').notNullable()
     t.string('genre')
-    t.string('description')
+    t.text('description')
     t.text('cover_url')
     t.timestamps(true, true)
   })

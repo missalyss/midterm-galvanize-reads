@@ -5,13 +5,15 @@
 {{#each bookCount}}
   <h3>Number of books: {{counted}}</h3>
 {{/each}}
+<br>
 {{#each allBooks}}
   <div class="row">
     <div class="col-lg-3 col-lg-offset-1">
       <img style="width: 250px;" src="{{cover_url}}" alt="">
     </div>
     <div class="col-lg-7">
-      <a href="/books/{{id}}"><h2>{{title}}</h2></a>
+      <a href="/books/{{books_id}}"><h2>{{title}}</h2></a>
+      <p>By<a href="authors/{{authors_id}}"> {{first_name}} {{last_name}}</a></p>
       <h3>Genre: {{genre}}</h3>
       <p>{{description}}</p>
     </div>

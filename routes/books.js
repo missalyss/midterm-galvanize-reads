@@ -4,7 +4,11 @@ var knex = require('../db/knex')
 
 // Render routes
 router.get('/', (req, res, next) => {
-  knex('books').then((allBooks) => {
+  knex.select('books.id as books_id', 'books.title', 'books.genre', 'books.description', 'books.cover_url', 'authors.id as authors_id', 'authors.first_name', 'authors.last_name')
+  .table('books')
+  .innerJoin('authors_books', 'books.id', 'authors_books.book_id')
+  .innerJoin('authors', 'authors_books.author_id', 'authors.id')
+  .then((allBooks) => {
     knex('books').count('id as counted').then((bookCount) => {
       res.render('books/show-all', {allBooks, bookCount})
     })

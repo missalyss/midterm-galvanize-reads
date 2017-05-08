@@ -4,7 +4,7 @@ exports.up = function (knex, Promise) {
     t.increments()
     t.string('first_name').notNullable()
     t.string('last_name').notNullable()
-    t.text('biography')
+    t.text('bio')
     t.text('portrait_url')
     t.timestamps(true, true)
   })

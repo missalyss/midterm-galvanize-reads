@@ -21,7 +21,7 @@ JavaScript          description: 'If you want to learn how to program, working w
           id: 3,
           title: 'You Don\'t Know JS: ES6 & BeyondLearning React Native',
           genre: 'JavaScript',
-JavaScript          description: 'Get a practical introduction to React Native, the JavaScript framework for writing and deploying fully featured mobile apps that look and feel native. With this hands-on guide, you’ll learn how to build applications that target iOS, Android, and other mobile platforms instead of browsers. You’ll also discover how to access platform features such as the camera, user location, and local storage.',
+          description: 'Get a practical introduction to React Native, the JavaScript framework for writing and deploying fully featured mobile apps that look and feel native. With this hands-on guide, you’ll learn how to build applications that target iOS, Android, and other mobile platforms instead of browsers. You’ll also discover how to access platform features such as the camera, user location, and local storage.',
           cover_url: 'https://s3-us-west-2.amazonaws.com/assessment-images/galvanize_reads/photos/learning_react_native.jpg'
         },
         {
@@ -46,5 +46,11 @@ JavaScript          description: 'Get a practical introduction to React Native, 
           cover_url: 'https://s3-us-west-2.amazonaws.com/assessment-images/galvanize_reads/photos/async_and_performance.jpg'
         }
       ])
+    }).then(function () {
+      return knex.raw(
+        "SELECT setval('books_id_seq', (SELECT MAX (id) FROM books))"
+      )
+    }).catch(function (error) {
+      console.error('Oops! ', error)
     })
 }

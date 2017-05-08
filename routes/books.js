@@ -9,11 +9,23 @@ router.get('/', (req, res, next) => {
   })
 })
 
+router.get('/edit/:id', (req, res) => {
+  res.render('books/edit')
+})
+
+router.get('/delete/:id', (req, res) => {
+  var thisId = req.params.id
+  console.log(thisId)
+  res.render('books/delete', {thisId})
+})
+
 router.get('/:id', (req, res) => {
   var id = req.params.id
   knex('books').where({id}).then((thisBook) => {
     res.render('books/show-one', {thisBook})
   })
 })
+
+
 
 module.exports = router

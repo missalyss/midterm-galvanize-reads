@@ -9,6 +9,15 @@ router.get('/', function (req, res, next) {
   })
 })
 
+router.get('/edit/:id', (req, res) => {
+  res.render('authors/edit')
+})
+
+router.get('/delete/:id', (req, res) => {
+  var id = req.params.id
+  res.render('authors/delete', {id})
+})
+
 router.get('/:id', (req, res) => {
   var id = req.params.id
   knex('authors').where({id}).then((thisAuthor) => {

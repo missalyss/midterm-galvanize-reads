@@ -10,7 +10,9 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/edit/:id', (req, res) => {
-  res.render('books/edit')
+  knex('books').where('id', req.params.id).then((thisBook) => {
+    res.render('books/edit', {thisBook})
+  })
 })
 
 router.get('/delete/:id', (req, res) => {
@@ -33,6 +35,15 @@ router.get('/:id', (req, res) => {
 router.post('/api', (req, res) => {
   var newBook = { title, genre, description, cover_url } = req.body
   knex('books').insert(newBook).then(() => {
+    res.redirect('/books')
+  })
+})
+
+router.put('/:id', (req, res) => {
+  var id = req.params.id
+  var editedBook = { title, genre, description, cover_url } = req.body
+  knex('books').where('id', id).update(editedBook)
+  .then(() => {
     res.redirect('/books')
   })
 })

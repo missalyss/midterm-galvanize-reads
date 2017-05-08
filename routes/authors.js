@@ -14,8 +14,8 @@ router.get('/edit/:id', (req, res) => {
 })
 
 router.get('/delete/:id', (req, res) => {
-  var id = req.params.id
-  res.render('authors/delete', {id})
+  var thisId = req.params.id
+  res.render('authors/delete', {thisId})
 })
 
 router.get('/:id', (req, res) => {

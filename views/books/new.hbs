@@ -12,7 +12,14 @@
     <label for="cover_url">Cover URL:</label>
     <input id="cover_url" type="text" name="cover_url" value="">
     <br>
+    {{#each allAuthors}}
+      <label for="{{id}}">{{first_name}} {{last_name}}
+        <input id="{{id}}" type="checkbox" name="anAuthor" value="{{id}}">
+      </label>
+      <br>
+    {{/each}}
+    <br>
     <input class="btn btn-success" type="submit" name="" value="Submit">
   </div>
 
-</form> 
+</form>

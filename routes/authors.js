@@ -5,7 +5,9 @@ var knex = require('../db/knex')
 // Rendering routes
 router.get('/', function (req, res, next) {
   knex('authors').then((allAuthors) => {
-    res.render('authors/show-all', {allAuthors})
+    knex('authors').count('id as counted').then((authCount) => {
+      res.render('authors/show-all', {allAuthors, authCount})
+    })
   })
 })
 

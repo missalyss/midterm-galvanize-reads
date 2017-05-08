@@ -2,6 +2,9 @@
 
 <a href="/books/new"><button class="btn btn-info"type="button" name="button">New book</button></a>
 <br>
+{{#each bookCount}}
+  <h3>Number of books: {{counted}}</h3>
+{{/each}}
 {{#each allBooks}}
   <div class="row">
     <div class="col-lg-3 col-lg-offset-1">

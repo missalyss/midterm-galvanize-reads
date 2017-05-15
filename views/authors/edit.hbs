@@ -1,21 +1,19 @@
 {{#each thisAuthor}}
-<form class="well" action="/authors/{{id}}?_method=PUT" method="post">
-  <div class="form-group">
-    <label for="first_name">First Name:</label>
-    <input id="first_name" type="text" name="first_name" value="{{first_name}}">
-    <br>
-    <label for="last_name">Last Name:</label>
-    <input id="last_name" type="text" name="last_name" value="{{last_name}}">
-    <br>
-    <label for="bio">Biography:</label>
-    <textarea id="bio" name="bio" class="form-control" rows="3">{{bio}}</textarea>
-    <br>
-    <label for="portrait_url">Portrait URL:</label>
-    <input id="portrait_url" type="text" name="portrait_url" value="{{portrait_url}}">
-    <br>
-    <input class="btn btn-success" type="submit" name="" value="Submit">
-  </div>
-
-</form>
-
+  <form class="well" action="/authors/{{id}}?_method=PUT" method="post">
+    <div class="form-group">
+      <label for="first_name">First Name:</label>
+      <input id="first_name" type="text" name="first_name" value="{{first_name}}">
+      <br>
+      <label for="last_name">Last Name:</label>
+      <input id="last_name" type="text" name="last_name" value="{{last_name}}">
+      <br>
+      <label for="bio">Biography:</label>
+      <textarea id="bio" name="bio" class="form-control" rows="3">{{bio}}</textarea>
+      <br>
+      <label for="portrait_url">Portrait URL:</label>
+      <input id="portrait_url" type="text" name="portrait_url" value="{{portrait_url}}">
+      <br>
+      <input class="btn btn-success" type="submit" name="" value="Submit">
+    </div>
+  </form>
 {{/each}}

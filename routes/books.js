@@ -6,8 +6,8 @@ var knex = require('../db/knex')
 router.get('/', (req, res, next) => {
   knex.select('books.id as books_id', 'books.title', 'books.genre', 'books.description', 'books.cover_url', 'authors.id as authors_id', 'authors.first_name', 'authors.last_name')
   .table('books')
-  .innerJoin('authors_books', 'books.id', 'authors_books.book_id')
-  .innerJoin('authors', 'authors_books.author_id', 'authors.id')
+  .fullOuterJoin('authors_books', 'books.id', 'authors_books.book_id')
+  .leftOuterJoin('authors', 'authors_books.author_id', 'authors.id')
   .then((allBooks) => {
     knex('books').count('id as counted').then((bookCount) => {
       res.render('books/show-all', {allBooks, bookCount})
@@ -23,8 +23,8 @@ router.get('/filtered', (req, res) => {
   knex.select('books.id as books_id', 'books.title', 'books.genre', 'books.description', 'books.cover_url', 'authors.id as authors_id', 'authors.first_name', 'authors.last_name')
   .table('books')
   .where(searchBy, search)
-  .innerJoin('authors_books', 'books.id', 'authors_books.book_id')
-  .innerJoin('authors', 'authors_books.author_id', 'authors.id')
+  .fullOuterJoin('authors_books', 'books.id', 'authors_books.book_id')
+  .leftOuterJoin('authors', 'authors_books.author_id', 'authors.id')
   .then((filteredBooks) => {
     knex('books').count('id as counted').then((bookCount) => {
       res.render('books/show-all', {filteredBooks, bookCount})
@@ -37,8 +37,8 @@ router.get('/edit/:id', (req, res) => {
   knex.select('books.id as books_id', 'books.title', 'books.genre', 'books.description', 'books.cover_url', 'authors.id as authors_id', 'authors.first_name', 'authors.last_name')
   .table('books')
   .where('books.id', req.params.id)
-  .innerJoin('authors_books', 'books.id', 'authors_books.book_id')
-  .innerJoin('authors', 'authors_books.author_id', 'authors.id')
+  .fullOuterJoin('authors_books', 'books.id', 'authors_books.book_id')
+  .leftOuterJoin('authors', 'authors_books.author_id', 'authors.id')
   .then((thisBook) => {
     res.render('books/edit', {thisBook})
   })
@@ -61,8 +61,8 @@ router.get('/:id', (req, res) => {
   knex.select('books.id as books_id', 'books.title', 'books.genre', 'books.description', 'books.cover_url', 'authors.id as authors_id', 'authors.first_name', 'authors.last_name')
   .table('books')
   .where('books.id', req.params.id)
-  .innerJoin('authors_books', 'books.id', 'authors_books.book_id')
-  .innerJoin('authors', 'authors_books.author_id', 'authors.id').then((thisBook) => {
+  .fullOuterJoin('authors_books', 'books.id', 'authors_books.book_id')
+  .leftOuterJoin('authors', 'authors_books.author_id', 'authors.id').then((thisBook) => {
     res.render('books/show-one', {thisBook})
   })
 })
